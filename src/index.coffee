@@ -11,13 +11,13 @@ defaultTemplate = fs.readFileSync path.join __dirname, 'template/markdown.tpl'
  * @param  {Object=} opts    Options, optional
  * ```javascript
  * {
- *     moduleName: '', // module name of the file
+ *     moduleName: '', // module name of the file, or it will be auto set to file name, of parent directory name for `index` file.
  *     moduleDesc: '', // module decription
  *     template: '',   // custom template
  *     tplData: {},    // addition template data
  *     cwd: process.cwd()   // current working directory
- *     language: ''         // specify the language, or recognize from extname
- *     rule: {}				// specific parser rule, varies from parsers
+ *     language: ''         // specify the language, or it will be auto recognized by extname
+ *     rule: {}				// specific parser rule, items vary from parsers
  * }
  * ```
  * @return {Promise}        Resolve formatted markdown
@@ -30,7 +30,7 @@ defaultTemplate = fs.readFileSync path.join __dirname, 'template/markdown.tpl'
 ###
 generate = (srcPath, opts = {})->
 	_.defaults opts,
-		moduleName: ''
+		moduleName: undefined
 		moduleDesc: ''
 		tplData: {}
 		template: defaultTemplate
@@ -38,10 +38,10 @@ generate = (srcPath, opts = {})->
 	parser.parseFile srcPath, opts
 	.then (comments)->
 		moduleName = do ->
-			if opts.moduleName then return opts.moduleName
+			if typeof opts.moduleName isnt 'undefined'  then return opts.moduleName
 
 			baseName = path.basename srcPath, path.extname(srcPath)
-			dirName  = path.dirname(srcPath).split(path.sep)[-1]
+			dirName  = path.dirname(srcPath).split(path.sep).slice(-1)[0]
 
 			return if baseName is 'index' then dirName else baseName
 

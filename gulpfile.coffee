@@ -6,7 +6,6 @@ _ = require 'lodash'
 util = require 'util'
 nodoc = require './src/index.coffee'
 
-
 gulp.task 'build', ->
 	gulp.src 'src/**'
 	.pipe aside '**/*.coffee', coffee bare: true
@@ -17,13 +16,13 @@ gulp.task 'doc', ->
 
 	fs.readFileP 'Readme.tpl'
 	.then (doc)->
-		nodoc.generate './src/index.coffee'
+		nodoc.generate './src/index.coffee', moduleName: ''
 		.then (api)->
 			data.api = api
-			nodoc.generate './src/parser/index.coffee'
+			nodoc.generate './src/parser/index.coffee', moduleName: ''
 		.then (parser)->
 			data.parser = parser
-			nodoc.generate './src/parser/coffee.coffee'
+			nodoc.generate './src/parser/coffee.coffee', moduleName: ''
 		.then (parserApi)->
 			data.parserAPI = parserApi
 			data.alias = JSON.stringify require('./src/language/name'), null, 4
