@@ -1,0 +1,27 @@
+{
+  "name": "nodoc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dracupid/nodoc.git"
+  },
+  "keywords": [
+    "doc",
+    "api"
+  ],
+  "author": "Dracupid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dracupid/nodoc/issues"
+  },
+  "homepage": "https://github.com/dracupid/nodoc",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "nofs": "^0.2.5"
+  }
+}
