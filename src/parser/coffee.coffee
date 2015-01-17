@@ -59,7 +59,7 @@ parse = (source, localRule = {})->
             name: m[2]
             description: content.description
             tags: content.tags
-            lineNum: source[...lastIndex].split('\n').length - 1
+            lineNum: source[...lastIndex].split('\n').length
     comments
 
 module.exports =
