@@ -14,16 +14,26 @@ getLangName = (name)->
     else
         newName
 
+###*
+ * Create a new parser or override an old ones
+ * @param {string} name   parser's name
+ * @param {Object} parser parser object
+###
+setParser = (name, parser)->
+    name = Array::concat.call [], name
+    name.forEach (n)->
+        parsers[n] = parser
+
 getParser = (language)->
-    language = getLangName language
+    language = getLangName language.toLowerCase()
     parsers[language] or parsers[language] = require './' + language
 
 ###*
  * Parse source code directly.
  * @param  {string}     source       source code
  * @param  {string}     language     specify source language
- * @param  {Object=}     opts         option
- * @return {string}                  parsed comment object
+ * @param  {Object=}    opts         option
+ * @return {Array}                   parsed comments object array
 ###
 parse = (source, language, opts = {})->
     _.defaults opts,
@@ -48,26 +58,33 @@ _parseFile = (filePath, opts, sync)->
             parse source, language, opts
 
 ###*
- * Parse source code from file
+ * Parse source code from file. Use Promise instead of callback
  * @param  {string}      filePath   souce file path
  * @param  {Object=}     opts       option
- * @return {Promise}                parsed comment object
+ * @return {Promise}                resolve parsed comment object
+###
+parseFile = (filePath, opts = {})->
+    _parseFile filePath, opts, false
+
+###*
+ * Synchronous version of parseFile
+ * @return {Object} parsed comment object array
 ###
 parseFileSync = (filePath, opts = {})->
     _parseFile filePath, opts, true
 
-parseFile = (filePath, opts = {})->
-    _parseFile filePath, opts, false
-
-
+###*
+ * Set parser's rule
+ * @param {String} language parser name
+ * @param {Object} rule     parser's rule
+###
 setRule = (language, rule)->
     getParser(language).setRule rule
-
-
 
 module.exports ={
     parse
     parseFileSync
     parseFile
+    setParser
     setRule
 }

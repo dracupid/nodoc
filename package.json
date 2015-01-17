@@ -2,9 +2,10 @@
   "name": "nodoc",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepubish": "gulp"
   },
   "repository": {
     "type": "git",
@@ -12,7 +13,8 @@
   },
   "keywords": [
     "doc",
-    "api"
+    "api",
+    "coffee"
   ],
   "author": "Dracupid",
   "license": "MIT",
@@ -23,5 +25,11 @@
   "dependencies": {
     "lodash": "^2.4.1",
     "nofs": "^0.2.5"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.8.0",
+    "gulp": "^3.8.10",
+    "gulp-aside": "^1.0.1",
+    "gulp-coffee": "^2.2.0"
   }
 }

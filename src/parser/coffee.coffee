@@ -42,7 +42,12 @@ parseContent = (content, r) ->
         tag.description = parseTag(r.descriptionReg) or ''
 
         tag
-
+###*
+ * Parse comment from source code
+ * @param  {string} source        source code
+ * @param  {Object=} localRule    optional, custom rule object, use once
+ * @return {Array}                parsed comments object array
+###
 parse = (source, localRule = {})->
     r = _.defaults localRule, rule
 
@@ -59,5 +64,9 @@ parse = (source, localRule = {})->
 
 module.exports =
     parse: parse
+    ###*
+     * Set the rule of the parser
+     * @param {Object} ruleObj Rule object
+    ###
     setRule: (ruleObj)->
         _.assign rule, ruleObj

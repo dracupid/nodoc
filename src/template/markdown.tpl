@@ -1,8 +1,8 @@
 <% if(moduleName){ %>
 ### <%= moduleName %>
 
-<% if(moduleDescription){ %>
-<%= moduleDescription %>
+<% if(moduleDesc){ %>
+<%= moduleDesc %>
 <% } %>
 
 <% } %>
