@@ -66,7 +66,13 @@ module.exports =
     parse: parse
     ###*
      * Set the rule of the parser
-     * @param {Object} ruleObj Rule object
+     * @param {Object} ruleObj rule object
     ###
     setRule: (ruleObj)->
         _.assign rule, ruleObj
+    ###*
+     * Hmm..., I'd like to use this to generate document.
+     * @return {Object} rule object
+    ###
+    getRule: ()->
+        rule

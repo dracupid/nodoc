@@ -17,6 +17,7 @@ defaultTemplate = fs.readFileSync path.join __dirname, 'template/markdown.tpl'
  *     tplData: {},    // addition template data
  *     cwd: process.cwd()   // current working directory
  *     language: ''         // specify the language, or recognize from extname
+ *     rule: {}				// specific parser rule, varies from parsers
  * }
  * ```
  * @return {Promise}        Resolve formatted markdown
