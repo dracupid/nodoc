@@ -7,7 +7,7 @@ parsers = {}
 
 getLangName = (name)->
     if not name
-        throw new Erro 'Language name is required!'
+        throw new Error 'Language name is required!'
     newName = nameMap[name]
     if not newName
         throw new Error 'Language Not Support: ' + name

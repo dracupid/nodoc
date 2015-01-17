@@ -5,7 +5,7 @@ path = require 'path'
 
 defaultTemplate = fs.readFileSync path.join __dirname, 'template/markdown.tpl'
 
-generateMarkdown = (srcPath, opts = {})->
+generate= (srcPath, opts = {})->
 	_.defaults opts,
 		moduleName: ''
 		moduleDescription: ''
@@ -33,5 +33,5 @@ generateMarkdown = (srcPath, opts = {})->
 
 module.exports = {
 	parser
-	generateMarkdown
+	generate
 }

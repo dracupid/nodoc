@@ -1,3 +1,5 @@
+# Inspired by nokit: https://github.com/ysmood/nokit
+
 _ = require 'lodash'
 
 rule =
