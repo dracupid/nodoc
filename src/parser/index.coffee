@@ -18,6 +18,7 @@ getLangName = (name)->
  * Create a new parser or override an old ones
  * @param {string|Array} name   parser's name/language (and aliases)
  * @param {Object} parser parser object, see below
+ * @prefix parser.
 ###
 setParser = (name, parser)->
     name = Array::concat.call [], name
@@ -34,6 +35,7 @@ getParser = (language)->
  * @param  {string}     language     specify source language
  * @param  {Object=}    opts         option, optional
  * @return {Array}                   parsed comments object **array**
+ * @prefix parser.
  * @example
  * ```javascript
  * nodoc.parser.parse("This is source code with comments", "coffee").then(function(comments){
@@ -68,6 +70,7 @@ _parseFile = (filePath, opts, sync)->
  * @param  {string}      filePath   souce file path
  * @param  {Object=}     opts       options
  * @return {Promise}                resolve parsed comment object **array**
+ * @prefix parser.
  * @example
  * ```javascript
  * nodoc.parser.parseFile("index.coffee", {cwd: './src'}).then(function(comments){
@@ -80,6 +83,7 @@ parseFile = (filePath, opts = {})->
 
 ###*
  * Synchronous version of parseFile
+ * @prefix parser.
  * @return {Object} parsed comment object **array**
 ###
 parseFileSync = (filePath, opts = {})->
@@ -89,6 +93,7 @@ parseFileSync = (filePath, opts = {})->
  * Set parser's rule
  * @param {string} language parser's name/language
  * @param {Object} rule     parser's rule object
+ * @prefix parser.
  * @example
  * ```javascript
  * nodec.parser.setRule('coffee', {

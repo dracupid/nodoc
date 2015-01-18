@@ -6,7 +6,7 @@ Generate gitHub flavored markdown API doc from source code comments.
 ## Supported Languages
 - CoffeeScript
 
-> Other languagage, especially javascript will be supported soon.
+> Other languagage, especially javascript, will be supported soon.
 
 #### Language Name Alias
 Use lower case, used both for language option and extname recognization.
@@ -50,11 +50,35 @@ As you can see, you can use **markdown** in your comment!
 
 More and more tags is going to be supported.
 
+### Predefined tags
+- `@private`: Hidden in the generated document.
+- `@nodoc`: Same behavior as `@private`, but they are differ in semantics.
+- `@alias`: Shown as an addition of function name.
+- `@prefix`: Add a custom prefix to function
+
 ## API
 <%= api %>
 
 ## Parser Module
 <%= parser %>
+
+#### Parsed Comment Object
+```javascript
+{   name: 'parseFile',
+    description: 'Parse source code from file. Use Promise instead of callback',
+    tags: [ [Object], [Object], [Object], [Object] ], // tag objects array
+    lineNum: 78 
+}
+```
+#### Tag Object
+```javascript
+{   tagName: 'param',
+    type: 'string', // only @param, @property, @return
+    name: 'srcPath', // only @param, @property
+    description: 'Path of source code file'
+}
+
+```
 
 ## Write your own template
 Nodoc uses [Lo-Dash template](https://lodash.com/docs#template) to render the markdown template. You need to realize that template is not HTML's privilege.   

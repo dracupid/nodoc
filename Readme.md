@@ -6,7 +6,7 @@ Generate gitHub flavored markdown API doc from source code comments.
 ## Supported Languages
 - CoffeeScript
 
-> Other languagage, especially javascript will be supported soon.
+> Other languagage, especially javascript, will be supported soon.
 
 #### Language Name Alias
 Use lower case, used both for language option and extname recognization.
@@ -55,10 +55,16 @@ As you can see, you can use **markdown** in your comment!
 
 More and more tags is going to be supported.
 
+### Predefined tags
+- `@private`: Hidden in the generated document.
+- `@nodoc`: Same behavior as `@private`, but they are differ in semantics.
+- `@alias`: Shown as an addition of function name.
+- `@prefix`: Add a custom prefix to function
+
 ## API
 
 
-- #### <a href="./src/index.coffee?source#L31" target="_blank"><b>generate</b></a>
+- #### <a href="./src/index.coffee?source#L71" target="_blank"><b>generate (alias: render ) </b></a>
   Generate formatted markdown API document from source code
 
   - **<u>param</u>**: `srcPath` { _string_ }
@@ -92,7 +98,7 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/index.coffee?source#L61" target="_blank"><b>parser</b></a>
+- #### <a href="./src/index.coffee?source#L101" target="_blank"><b>parser</b></a>
   Parser module, see below for details.
 
 
@@ -100,7 +106,7 @@ More and more tags is going to be supported.
 ## Parser Module
 
 
-- #### <a href="./src/parser/index.coffee?source#L22" target="_blank"><b>setParser</b></a>
+- #### <a href="./src/parser/index.coffee?source#L23" target="_blank"><b>parser.setParser</b></a>
   Create a new parser or override an old ones
 
   - **<u>param</u>**: `name` { _string|Array_ }
@@ -111,7 +117,7 @@ More and more tags is going to be supported.
 
     parser object, see below
 
-- #### <a href="./src/parser/index.coffee?source#L44" target="_blank"><b>parse</b></a>
+- #### <a href="./src/parser/index.coffee?source#L46" target="_blank"><b>parser.parse</b></a>
   Parse source code directly.
 
   - **<u>param</u>**: `source` { _string_ }
@@ -138,7 +144,7 @@ More and more tags is going to be supported.
     })
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L78" target="_blank"><b>parseFile</b></a>
+- #### <a href="./src/parser/index.coffee?source#L81" target="_blank"><b>parser.parseFile</b></a>
   Parse source code from file. Use Promise instead of callback
 
   - **<u>param</u>**: `filePath` { _string_ }
@@ -161,14 +167,14 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L85" target="_blank"><b>parseFileSync</b></a>
+- #### <a href="./src/parser/index.coffee?source#L89" target="_blank"><b>parser.parseFileSync</b></a>
   Synchronous version of parseFile
 
   - **<u>return</u>**: { _Object_ }
 
     parsed comment object **array**
 
-- #### <a href="./src/parser/index.coffee?source#L99" target="_blank"><b>setRule</b></a>
+- #### <a href="./src/parser/index.coffee?source#L104" target="_blank"><b>parser.setRule</b></a>
   Set parser's rule
 
   - **<u>param</u>**: `language` { _string_ }
@@ -188,6 +194,24 @@ More and more tags is going to be supported.
     ```
 
 
+
+#### Parsed Comment Object
+```javascript
+{   name: 'parseFile',
+    description: 'Parse source code from file. Use Promise instead of callback',
+    tags: [ [Object], [Object], [Object], [Object] ], // tag objects array
+    lineNum: 78 
+}
+```
+#### Tag Object
+```javascript
+{   tagName: 'param',
+    type: 'string', // only @param, @property, @return
+    name: 'srcPath', // only @param, @property
+    description: 'Path of source code file'
+}
+
+```
 
 ## Write your own template
 Nodoc uses [Lo-Dash template](https://lodash.com/docs#template) to render the markdown template. You need to realize that template is not HTML's privilege.   
