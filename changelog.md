@@ -1,6 +1,6 @@
 v0.1.1
 ===================
-- Add Predefined tags
+- Add predefined tags
     + @private
     + @nodoc
     + @alias
