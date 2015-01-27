@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/dracupid/nodoc",
   "dependencies": {
-    "lodash": "^2.4.1",
-    "nofs": "^0.2.5"
+    "lodash": "^3.0.0",
+    "nofs": "^0.4.2"
   },
   "devDependencies": {
     "coffee-script": "^1.8.0",

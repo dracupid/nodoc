@@ -14,7 +14,7 @@ gulp.task 'build', ->
 gulp.task 'doc', ->
 	data = {}
 
-	fs.readFileP 'Readme.tpl'
+	fs.readFile 'Readme.tpl'
 	.then (doc)->
 		nodoc.generate './src/index.coffee', moduleName: ''
 		.then (api)->
@@ -29,6 +29,6 @@ gulp.task 'doc', ->
 			data.coffeeRule = util.inspect require('./src/parser/coffee').getRule()
 			_.template(doc + '')(data)
 	.then (md)->
-		fs.writeFileP 'Readme.md', md
+		fs.writeFile 'Readme.md', md
 
 gulp.task 'default', ['build', 'doc']

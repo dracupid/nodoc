@@ -1,3 +1,7 @@
+v0.1.2
+==================
+- update dependency
+
 v0.1.1
 ===================
 - Add predefined tags

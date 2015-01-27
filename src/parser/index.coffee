@@ -61,7 +61,7 @@ _parseFile = (filePath, opts, sync)->
     if sync
         parse fs.readFileSync(filePath), language, opts
     else
-        fs.readFileP filePath
+        fs.readFile filePath
         .then (source)->
             parse source, language, opts
 
