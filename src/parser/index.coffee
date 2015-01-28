@@ -96,7 +96,7 @@ parseFileSync = (filePath, opts = {})->
  * @prefix parser.
  * @example
  * ```javascript
- * nodec.parser.setRule('coffee', {
+ * nodoc.parser.setRule('coffee', {
  *     commentReg: /#?([\s\S]+?)#\s+([\w\.]+)/g
  * });
  * ```
