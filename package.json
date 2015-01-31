@@ -23,13 +23,13 @@
   },
   "homepage": "https://github.com/dracupid/nodoc",
   "dependencies": {
-    "lodash": "^3.0.0",
-    "nofs": "^0.4.2"
+    "lodash": "^3.0.1",
+    "nofs": "^0.4.4"
   },
   "devDependencies": {
-    "coffee-script": "^1.8.0",
+    "coffee-script": "^1.9.0",
     "gulp": "^3.8.10",
     "gulp-aside": "^1.0.1",
-    "gulp-coffee": "^2.2.0"
+    "gulp-coffee": "^2.3.1"
   }
 }
