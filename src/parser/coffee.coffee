@@ -6,7 +6,7 @@ rule =
     commentReg: /###\*([\s\S]+?)###\s+([\w\.]+)/g
     splitReg: /^\s+\* ?@/m
     tagNameReg: /^([\w\.]+)\s*/
-    typeReg: /^\{(.+?)\}\s*/
+    typeReg: /^\{(.+|}?)\}\s*/
     nameReg: /^(\w+)\s*/
     nameTags: ['param', 'property']
     descriptionReg: /^([\s\S]*)/

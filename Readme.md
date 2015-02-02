@@ -191,7 +191,7 @@ More and more tags is going to be supported.
   - **<u>example</u>**: 
 
     ```javascript
-    nodec.parser.setRule('coffee', {
+    nodoc.parser.setRule('coffee', {
         commentReg: /#?([\s\S]+?)#\s+([\w\.]+)/g
     });
     ```
@@ -274,7 +274,7 @@ A parser uses and is supposed to expose the rules it uses to parse the code.
 { commentReg: /###\*([\s\S]+?)###\s+([\w\.]+)/g,
   splitReg: /^\s+\* ?@/m,
   tagNameReg: /^([\w\.]+)\s*/,
-  typeReg: /^\{(.+?)\}\s*/,
+  typeReg: /^\{(.+|}?)\}\s*/,
   nameReg: /^(\w+)\s*/,
   nameTags: [ 'param', 'property' ],
   descriptionReg: /^([\s\S]*)/ }

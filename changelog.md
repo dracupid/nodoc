@@ -1,3 +1,8 @@
+v0.1.3
+=============
+- fix a parser bug: parse {Object={}} as {Object={}
+- update nofs
+
 v0.1.2
 ==================
 - update dependency
