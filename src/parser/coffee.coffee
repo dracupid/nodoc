@@ -10,6 +10,7 @@ rule =
     nameReg: /^(\w+)\s*/
     nameTags: ['param', 'property']
     descriptionReg: /^([\s\S]*)/
+    removePrefix: /self\.|this\./
 
 parseContent = (content, r) ->
     # Unescape '\/'
@@ -56,7 +57,7 @@ parse = (source, localRule = {})->
         content = parseContent m[1], r
         lastIndex = r.commentReg.lastIndex
         comments.push
-            name: m[2]
+            name: m[2].replace rule.removePrefix, ''
             description: content.description
             tags: content.tags
             lineNum: source[...lastIndex].split('\n').length

@@ -109,7 +109,7 @@ More and more tags is going to be supported.
 ## Parser Module
 
 
-- #### <a href="./src/parser/index.coffee?source#L23" target="_blank"><b>parser.setParser</b></a>
+- #### <a href="./src/parser/index.coffee?source#L23" target="_blank"><b>parser.global.setParser</b></a>
   Create a new parser or override an old ones
 
   - **<u>param</u>**: `name` { _string|Array_ }
@@ -235,7 +235,7 @@ A parser should provide follow APIs:
 ### Parser API
 
 
-- #### <a href="./src/parser/coffee.coffee?source#L51" target="_blank"><b>parse</b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L52" target="_blank"><b>parse</b></a>
   Parse comment from source code
 
   - **<u>param</u>**: `source` { _string_ }
@@ -250,14 +250,14 @@ A parser should provide follow APIs:
 
     parsed comments object array
 
-- #### <a href="./src/parser/coffee.coffee?source#L71" target="_blank"><b>setRule</b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L72" target="_blank"><b>setRule</b></a>
   Set the rule of the parser
 
   - **<u>param</u>**: `ruleObj` { _Object_ }
 
     rule object
 
-- #### <a href="./src/parser/coffee.coffee?source#L77" target="_blank"><b>getRule</b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L78" target="_blank"><b>getRule</b></a>
   Hmm..., I'd like to use this to generate document.
 
   - **<u>return</u>**: { _Object_ }
@@ -277,7 +277,8 @@ A parser uses and is supposed to expose the rules it uses to parse the code.
   typeReg: /^\{(.+|}?)\}\s*/,
   nameReg: /^(\w+)\s*/,
   nameTags: [ 'param', 'property' ],
-  descriptionReg: /^([\s\S]*)/ }
+  descriptionReg: /^([\s\S]*)/,
+  removePrefix: /self\.|this\./ }
 ```
 
 ### License
