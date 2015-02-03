@@ -1,3 +1,8 @@
+v0.1.4
+==========
+- remove useless name prefix, such as `self`
+- fix a template bug for display `_`
+
 v0.1.3
 =============
 - fix a parser bug: parse {Object={}} as {Object={}
