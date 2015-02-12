@@ -1,20 +1,19 @@
-gulp = require 'gulp'
-aside = require 'gulp-aside'
-coffee = require 'gulp-coffee'
-fs = require 'nofs'
-_ = require 'lodash'
+_ = require 'underscore'
 util = require 'util'
 nodoc = require './src/index.coffee'
 
-gulp.task 'build', ->
-	gulp.src 'src/**'
-	.pipe aside '**/*.coffee', coffee bare: true
-	.pipe gulp.dest 'dist'
+require 'nokit/global'
 
-gulp.task 'doc', ->
+task 'build', ->
+    kit.warp 'src/**'
+    .load drives.auto 'lint', '.coffee': config: 'coffeelint-strict.json'
+    .load drives.auto 'compile'
+    .run 'dist'
+
+task 'doc', ->
 	data = {}
 
-	fs.readFile 'Readme.tpl'
+	kit.readFile 'Readme.tpl'
 	.then (doc)->
 		nodoc.generate './src/index.coffee', moduleName: ''
 		.then (api)->
@@ -27,8 +26,8 @@ gulp.task 'doc', ->
 			data.parserAPI = parserApi
 			data.alias = JSON.stringify require('./src/language/name'), null, 4
 			data.coffeeRule = util.inspect require('./src/parser/coffee').getRule()
-			_.template(doc + '')(data)
+			_.template(doc + '') data
 	.then (md)->
-		fs.writeFile 'Readme.md', md
+		kit.writeFile 'Readme.md', md
 
-gulp.task 'default', ['build', 'doc']
+task 'default', ['build', 'doc']
