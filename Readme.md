@@ -85,7 +85,7 @@ More and more tags is going to be supported.
         tplData: {},    // addition template data
         cwd: process.cwd()   // current working directory
         language: ''         // specify the language, or it will be auto recognized by extname
-        rule: {}                // specific parser rule, items vary from parsers
+        rule: {}             // specific parser rule, items vary from parsers
     }
     ```
 
@@ -109,7 +109,7 @@ More and more tags is going to be supported.
 ## Parser Module
 
 
-- #### <a href="./src/parser/index.coffee?source#L23" target="_blank"><b>parser.global.setParser</b></a>
+- #### <a href="./src/parser/index.coffee?source#L24" target="_blank"><b>parser.setParser</b></a>
   Create a new parser or override an old ones
 
   - **<u>param</u>**: `name` { _string|Array_ }
@@ -120,7 +120,7 @@ More and more tags is going to be supported.
 
     parser object, see below
 
-- #### <a href="./src/parser/index.coffee?source#L46" target="_blank"><b>parser.parse</b></a>
+- #### <a href="./src/parser/index.coffee?source#L47" target="_blank"><b>parser.parse</b></a>
   Parse source code directly.
 
   - **<u>param</u>**: `source` { _string_ }
@@ -147,7 +147,7 @@ More and more tags is going to be supported.
     })
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L81" target="_blank"><b>parser.parseFile</b></a>
+- #### <a href="./src/parser/index.coffee?source#L87" target="_blank"><b>parser.parseFile</b></a>
   Parse source code from file. Use Promise instead of callback
 
   - **<u>param</u>**: `filePath` { _string_ }
@@ -170,14 +170,14 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L89" target="_blank"><b>parser.parseFileSync</b></a>
+- #### <a href="./src/parser/index.coffee?source#L95" target="_blank"><b>parser.parseFileSync</b></a>
   Synchronous version of parseFile
 
   - **<u>return</u>**: { _Object_ }
 
     parsed comment object **array**
 
-- #### <a href="./src/parser/index.coffee?source#L104" target="_blank"><b>parser.setRule</b></a>
+- #### <a href="./src/parser/index.coffee?source#L110" target="_blank"><b>parser.setRule</b></a>
   Set parser's rule
 
   - **<u>param</u>**: `language` { _string_ }

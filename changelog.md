@@ -1,3 +1,7 @@
+v0.1.5
+==========
+- more lightwight
+
 v0.1.4
 ==========
 - remove useless name prefix, such as `self`
