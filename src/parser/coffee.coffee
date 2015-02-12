@@ -1,6 +1,6 @@
 # Inspired by nokit: https://github.com/ysmood/nokit
 
-_ = require 'lodash'
+_ = require 'underscore'
 
 rule =
     commentReg: /###\*([\s\S]+?)###\s+([\w\.]+)/g
@@ -70,7 +70,7 @@ module.exports =
      * @param {Object} ruleObj rule object
     ###
     setRule: (ruleObj)->
-        _.assign rule, ruleObj
+        _.extend rule, ruleObj
     ###*
      * Hmm..., I'd like to use this to generate document.
      * @return {Object} rule object

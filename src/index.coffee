@@ -1,22 +1,22 @@
 parser = require './parser'
-_ = require 'lodash'
-fs = require 'nofs'
+_ = require 'underscore'
+fs = require 'fs'
 path = require 'path'
 
-defaultTemplate = fs.readFileSync path.join __dirname, 'template/markdown.tpl'
+defaultTemplate = '' + fs.readFileSync path.join __dirname, 'template/markdown.tpl'
 
 removeTag = (comment, tagName)->
-	comment.tags = comment.tags.filter (tag)->
-		tag.tagName isnt tagName
-	comment
+    comment.tags = comment.tags.filter (tag)->
+        tag.tagName isnt tagName
+    comment
 
 getTag = (comment, tagName)->
-	tag = comment.tags.filter (tag)->
-			tag.tagName is tagName
-	tag
+    tag = comment.tags.filter (tag)->
+        tag.tagName is tagName
+    tag
 
 hasTag = (comment, tagName)->
-	getTag(comment, tagName).length
+    getTag(comment, tagName).length
 
 ###*
  * Remove tags not to be shown
@@ -25,23 +25,23 @@ hasTag = (comment, tagName)->
  * @private
 ###
 commentFilter = (comments)->
-	cos = comments.filter (comment)->
-		not (hasTag comment, 'private' or hasTag comment, 'nodoc')
-	cos.forEach (comment)->
-		aliasTag = getTag(comment, 'alias')
-		if aliasTag.length
-			alias = aliasTag.reduce (str, a)->
-				str += a.description + ' '
-			, ''
-			if alias then comment.name += " (alias: #{alias}) "
-			removeTag(comment, 'alias')
+    cos = comments.filter (comment)->
+        not (hasTag comment, 'private' or hasTag comment, 'nodoc')
+    cos.forEach (comment)->
+        aliasTag = getTag(comment, 'alias')
+        if aliasTag.length
+            alias = aliasTag.reduce (str, a)->
+                str += a.description + ' '
+            , ''
+            if alias then comment.name += " (alias: #{alias}) "
+            removeTag(comment, 'alias')
 
-		prefixTag = getTag(comment, 'prefix')[0]
-		if prefixTag
-			comment.name =  (prefixTag.description or '') + comment.name
-			removeTag(comment, 'prefix')
+        prefixTag = getTag(comment, 'prefix')[0]
+        if prefixTag
+            comment.name =  (prefixTag.description or '') + comment.name
+            removeTag(comment, 'prefix')
 
-	cos
+    cos
 
 
 ###*
@@ -57,7 +57,7 @@ commentFilter = (comments)->
  *     tplData: {},    // addition template data
  *     cwd: process.cwd()   // current working directory
  *     language: ''         // specify the language, or it will be auto recognized by extname
- *     rule: {}				// specific parser rule, items vary from parsers
+ *     rule: {}             // specific parser rule, items vary from parsers
  * }
  * ```
  * @return {Promise}        Resolve formatted markdown
@@ -69,36 +69,36 @@ commentFilter = (comments)->
  * ```
 ###
 generate = (srcPath, opts = {})->
-	_.defaults opts,
-		moduleName: undefined
-		moduleDesc: ''
-		tplData: {}
-		template: defaultTemplate
+    _.defaults opts,
+        moduleName: undefined
+        moduleDesc: ''
+        tplData: {}
+        template: defaultTemplate
 
-	parser.parseFile srcPath, opts
-	.then (comments)->
-		moduleName = do ->
-			if typeof opts.moduleName isnt 'undefined'  then return opts.moduleName
+    parser.parseFile srcPath, opts
+    .then (comments)->
+        moduleName = do ->
+            if typeof opts.moduleName isnt 'undefined'  then return opts.moduleName
 
-			baseName = path.basename srcPath, path.extname(srcPath)
-			dirName  = path.dirname(srcPath).split(path.sep).slice(-1)[0]
+            baseName = path.basename srcPath, path.extname(srcPath)
+            dirName  = path.dirname(srcPath).split(path.sep).slice(-1)[0]
 
-			return if baseName is 'index' then dirName else baseName
+            return if baseName is 'index' then dirName else baseName
 
-		_.assign opts.tplData, {
-			moduleDesc: opts.moduleDesc
-			moduleName
-			comments: commentFilter comments
-			srcPath
-		}
+        _.extend opts.tplData, {
+            moduleDesc: opts.moduleDesc
+            moduleName
+            comments: commentFilter comments
+            srcPath
+        }
 
-		_.template(opts.template)(opts.tplData).replace(/(\r\n|\n)(\ |\r\n|\n)*(\r\n|\n)/g, '\n\n')
+        _.template(opts.template + '')(opts.tplData).replace(/(\r\n|\n)(\ |\r\n|\n)*(\r\n|\n)/g, '\n\n')
 
 module.exports = {
-	###*
-	 * Parser module, see below for details.
-	###
-	parser
-	generate
-	render: generate
+    ###*
+     * Parser module, see below for details.
+    ###
+    parser
+    generate
+    render: generate
 }

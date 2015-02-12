@@ -1,7 +1,8 @@
 path = require 'path'
-_ = require 'lodash'
-fs = require 'nofs'
+_ = require 'underscore'
+fs = require 'fs'
 nameMap = require '../language/name'
+Promise = require 'bluebird'
 
 parsers = {}
 
@@ -49,6 +50,9 @@ parse = (source, language, opts = {})->
 
     getParser(language).parse source + ''
 
+
+readFileP = Promise.promisify fs.readFile
+
 _parseFile = (filePath, opts, sync)->
     _.defaults opts,
         rule: null
@@ -61,7 +65,7 @@ _parseFile = (filePath, opts, sync)->
     if sync
         parse fs.readFileSync(filePath), language, opts
     else
-        fs.readFile filePath
+        readFileP filePath
         .then (source)->
             parse source, language, opts
 
