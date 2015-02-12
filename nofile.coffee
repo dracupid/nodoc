@@ -5,7 +5,7 @@ nodoc = require './src/index.coffee'
 require 'nokit/global'
 
 task 'build', ->
-    kit.warp 'src/**'
+    kit.warp 'src/**', isCache: no
     .load drives.auto 'lint', '.coffee': config: 'coffeelint-strict.json'
     .load drives.auto 'compile'
     .run 'dist'
