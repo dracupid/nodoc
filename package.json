@@ -1,6 +1,6 @@
 {
   "name": "nodoc",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "dist/index.js",
   "description": "Generate gitHub flavored markdown API doc from source code comments",
   "scripts": {
