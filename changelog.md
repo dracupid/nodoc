@@ -1,3 +1,8 @@
+v0.1.6
+=========
+- minor bug fix
+- upd: dep
+
 v0.1.5
 ==========
 - more lightwight

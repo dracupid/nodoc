@@ -2,7 +2,7 @@ path = require 'path'
 _ = require 'underscore'
 fs = require 'fs'
 nameMap = require '../language/name'
-Promise = require 'promise'
+Promise = require 'bluebird-es6'
 
 parsers = {}
 
@@ -48,10 +48,10 @@ parse = (source, language, opts = {})->
     _.defaults opts,
         rule: null
 
-    getParser(language).parse source + ''
+    getParser(language).parse source + '', opts
 
 
-readFileP = Promise.denodeify fs.readFile
+readFileP = Promise.promisify fs.readFile
 
 _parseFile = (filePath, opts, sync)->
     _.defaults opts,
@@ -68,8 +68,6 @@ _parseFile = (filePath, opts, sync)->
         readFileP filePath
         .then (source)->
             parse source, language, opts
-        .catch (e)->
-            throw e
 
 ###*
  * Parse source code from file. Use Promise instead of callback

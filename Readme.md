@@ -147,7 +147,7 @@ More and more tags is going to be supported.
     })
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L87" target="_blank"><b>parser.parseFile</b></a>
+- #### <a href="./src/parser/index.coffee?source#L85" target="_blank"><b>parser.parseFile</b></a>
   Parse source code from file. Use Promise instead of callback
 
   - **<u>param</u>**: `filePath` { _string_ }
@@ -170,14 +170,14 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L95" target="_blank"><b>parser.parseFileSync</b></a>
+- #### <a href="./src/parser/index.coffee?source#L93" target="_blank"><b>parser.parseFileSync</b></a>
   Synchronous version of parseFile
 
   - **<u>return</u>**: { _Object_ }
 
     parsed comment object **array**
 
-- #### <a href="./src/parser/index.coffee?source#L110" target="_blank"><b>parser.setRule</b></a>
+- #### <a href="./src/parser/index.coffee?source#L108" target="_blank"><b>parser.setRule</b></a>
   Set parser's rule
 
   - **<u>param</u>**: `language` { _string_ }
