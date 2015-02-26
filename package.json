@@ -27,11 +27,11 @@
   "homepage": "https://github.com/dracupid/nodoc",
   "dependencies": {
     "bluebird-es6": "*",
-    "underscore": "1.8.1"
+    "underscore": "1.8.2"
   },
   "devDependencies": {
     "coffee-script": "1.9.1",
-    "coffeelint": "1.9.1",
+    "coffeelint": "1.9.2",
     "commander": "2.6.0",
     "nokit": "0.5.4"
   }
