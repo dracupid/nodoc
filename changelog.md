@@ -1,3 +1,7 @@
+v0.1.7
+==========
+- fix: an option passing bug
+
 v0.1.6
 =========
 - minor bug fix
