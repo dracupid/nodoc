@@ -48,7 +48,7 @@ parse = (source, language, opts = {})->
     _.defaults opts,
         rule: null
 
-    getParser(language).parse source + '', opts
+    getParser(language).parse source + '', opts.rule
 
 
 readFileP = Promise.promisify fs.readFile

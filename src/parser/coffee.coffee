@@ -57,7 +57,7 @@ parse = (source, localRule = {})->
         content = parseContent m[1], r
         lastIndex = r.commentReg.lastIndex
         comments.push
-            name: m[2].replace rule.removePrefix, ''
+            name: m[2].replace r.removePrefix, ''
             description: content.description
             tags: content.tags
             lineNum: source[...lastIndex].split('\n').length
