@@ -2,11 +2,11 @@ path = require 'path'
 _ = require 'underscore'
 fs = require 'fs'
 nameMap = require '../language/name'
-Promise = require 'bluebird-es6'
+Promise = require 'yaku'
 
 parsers = {}
 
-getLangName = (name)->
+getLangName = (name) ->
     if not name
         throw new Error 'Language name is required!'
     newName = nameMap[name]
@@ -21,12 +21,12 @@ getLangName = (name)->
  * @param {Object} parser parser object, see below
  * @prefix parser.
 ###
-setParser = (name, parser)->
+setParser = (name, parser) ->
     name = Array::concat.call [], name
-    name.forEach (n)->
+    name.forEach (n) ->
         parsers[n] = parser
 
-getParser = (language)->
+getParser = (language) ->
     language = getLangName language.toLowerCase()
     parsers[language] or parsers[language] = require './' + language
 
@@ -44,16 +44,17 @@ getParser = (language)->
  * })
  * ```
 ###
-parse = (source, language, opts = {})->
+parse = (source, language, opts = {}) ->
     _.defaults opts,
         rule: null
 
     getParser(language).parse source + '', opts.rule
 
+promisify = require '../promisify'
 
-readFileP = Promise.promisify fs.readFile
+readFileP = promisify fs.readFile
 
-_parseFile = (filePath, opts, sync)->
+_parseFile = (filePath, opts, sync) ->
     _.defaults opts,
         rule: null
         language: ''
@@ -66,7 +67,7 @@ _parseFile = (filePath, opts, sync)->
         parse fs.readFileSync(filePath), language, opts
     else
         readFileP filePath
-        .then (source)->
+        .then (source) ->
             parse source, language, opts
 
 ###*
@@ -82,7 +83,7 @@ _parseFile = (filePath, opts, sync)->
  * });
  * ```
 ###
-parseFile = (filePath, opts = {})->
+parseFile = (filePath, opts = {}) ->
     _parseFile filePath, opts, false
 
 ###*
@@ -90,7 +91,7 @@ parseFile = (filePath, opts = {})->
  * @prefix parser.
  * @return {Object} parsed comment object **array**
 ###
-parseFileSync = (filePath, opts = {})->
+parseFileSync = (filePath, opts = {}) ->
     _parseFile filePath, opts, true
 
 ###*
@@ -105,7 +106,7 @@ parseFileSync = (filePath, opts = {})->
  * });
  * ```
 ###
-setRule = (language, rule)->
+setRule = (language, rule) ->
     getParser(language).setRule rule
 
 module.exports = {

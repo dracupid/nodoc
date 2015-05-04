@@ -62,12 +62,13 @@ More and more tags is going to be supported.
 - `@private`: Hidden in the generated document.
 - `@nodoc`: Same behavior as `@private`, but they are differ in semantics.
 - `@alias`: Shown as an addition of function name.
-- `@prefix`: Add a custom prefix to function
+- `@prefix`: Add a custom prefix to function.
+- `@noPrefix`: Only preserve the real name, regard `util.promisify` as `promisify`.
 
 ## API
 
 
-- #### <a href="./src/index.coffee?source#L71" target="_blank"><b>generate (alias: render ) </b></a>
+- #### <a href="./src/index.coffee?source#L74" target="_blank"><b>generate (alias: render ) </b></a>
   Generate formatted markdown API document from source code
 
   - **<u>param</u>**: `srcPath` { _string_ }
@@ -101,7 +102,7 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/index.coffee?source#L101" target="_blank"><b>parser</b></a>
+- #### <a href="./src/index.coffee?source#L104" target="_blank"><b>parser</b></a>
   Parser module, see below for details.
 
 
@@ -147,7 +148,7 @@ More and more tags is going to be supported.
     })
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L85" target="_blank"><b>parser.parseFile</b></a>
+- #### <a href="./src/parser/index.coffee?source#L86" target="_blank"><b>parser.parseFile</b></a>
   Parse source code from file. Use Promise instead of callback
 
   - **<u>param</u>**: `filePath` { _string_ }
@@ -170,14 +171,14 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L93" target="_blank"><b>parser.parseFileSync</b></a>
+- #### <a href="./src/parser/index.coffee?source#L94" target="_blank"><b>parser.parseFileSync</b></a>
   Synchronous version of parseFile
 
   - **<u>return</u>**: { _Object_ }
 
     parsed comment object **array**
 
-- #### <a href="./src/parser/index.coffee?source#L108" target="_blank"><b>parser.setRule</b></a>
+- #### <a href="./src/parser/index.coffee?source#L109" target="_blank"><b>parser.setRule</b></a>
   Set parser's rule
 
   - **<u>param</u>**: `language` { _string_ }
@@ -203,7 +204,7 @@ More and more tags is going to be supported.
 {   name: 'parseFile',
     description: 'Parse source code from file. Use Promise instead of callback',
     tags: [ [Object], [Object], [Object], [Object] ], // tag objects array
-    lineNum: 78 
+    lineNum: 78
 }
 ```
 #### Tag Object
@@ -217,7 +218,7 @@ More and more tags is going to be supported.
 ```
 
 ## Write your own template
-Nodoc uses [Lo-Dash template](https://lodash.com/docs#template) to render the markdown template. You need to realize that template is not HTML's privilege.   
+Nodoc uses [Lo-Dash template](https://lodash.com/docs#template) to render the markdown template. You need to realize that template is not HTML's privilege.
 If you don't want to use the default template, you can use your own.
 ```javascript
 doc.generate('./src/parser/index.coffee', {
@@ -275,7 +276,7 @@ A parser uses and is supposed to expose the rules it uses to parse the code.
   splitReg: /^\s+\* ?@/m,
   tagNameReg: /^([\w\.]+)\s*/,
   typeReg: /^\{(.+|}?)\}\s*/,
-  nameReg: /^(\w+)\s*/,
+  nameReg: /^([\w\.]+)\s*/,
   nameTags: [ 'param', 'property' ],
   descriptionReg: /^([\s\S]*)/,
   removePrefix: /self\.|this\./ }

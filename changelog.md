@@ -1,3 +1,9 @@
+v0.2.0
+=========
+- opt: use [yaku](https://github.com/ysmood/yaku) to replace `bluebird`.
+- upd: dep
+- new: predefined tag `@noPrefix`
+
 v0.1.7
 ==========
 - fix: an option passing bug

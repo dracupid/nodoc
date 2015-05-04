@@ -57,7 +57,8 @@ More and more tags is going to be supported.
 - `@private`: Hidden in the generated document.
 - `@nodoc`: Same behavior as `@private`, but they are differ in semantics.
 - `@alias`: Shown as an addition of function name.
-- `@prefix`: Add a custom prefix to function
+- `@prefix`: Add a custom prefix to function.
+- `@noPrefix`: Only preserve the real name, regard `util.promisify` as `promisify`.
 
 ## API
 <%= api %>
@@ -70,7 +71,7 @@ More and more tags is going to be supported.
 {   name: 'parseFile',
     description: 'Parse source code from file. Use Promise instead of callback',
     tags: [ [Object], [Object], [Object], [Object] ], // tag objects array
-    lineNum: 78 
+    lineNum: 78
 }
 ```
 #### Tag Object
@@ -84,7 +85,7 @@ More and more tags is going to be supported.
 ```
 
 ## Write your own template
-Nodoc uses [Lo-Dash template](https://lodash.com/docs#template) to render the markdown template. You need to realize that template is not HTML's privilege.   
+Nodoc uses [Lo-Dash template](https://lodash.com/docs#template) to render the markdown template. You need to realize that template is not HTML's privilege.
 If you don't want to use the default template, you can use your own.
 ```javascript
 doc.generate('./src/parser/index.coffee', {

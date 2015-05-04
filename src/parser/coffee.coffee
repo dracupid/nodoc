@@ -1,4 +1,4 @@
-# Inspired by nokit: https://github.com/ysmood/nokit
+# Inspired by nokit.parseComment: https://github.com/ysmood/nokit
 
 _ = require 'underscore'
 
@@ -7,7 +7,7 @@ rule =
     splitReg: /^\s+\* ?@/m
     tagNameReg: /^([\w\.]+)\s*/
     typeReg: /^\{(.+|}?)\}\s*/
-    nameReg: /^(\w+)\s*/
+    nameReg: /^([\w\.]+)\s*/
     nameTags: ['param', 'property']
     descriptionReg: /^([\s\S]*)/
     removePrefix: /self\.|this\./
@@ -21,7 +21,7 @@ parseContent = (content, r) ->
         el.replace(/^[ \t]+\*[ \t]?/mg, '').trim()
 
     description: arr[0] or ''
-    tags: arr[1..].map (el)->
+    tags: arr[1..].map (el) ->
         parseTag = (reg) ->
             m = el.match reg
             if m and m[1]
@@ -49,7 +49,7 @@ parseContent = (content, r) ->
  * @param  {Object=} localRule    optional, custom rule object, use once
  * @return {Array}                parsed comments object array
 ###
-parse = (source, localRule = {})->
+parse = (source, localRule = {}) ->
     r = _.defaults localRule, rule
 
     comments = []
@@ -69,11 +69,10 @@ module.exports =
      * Set the rule of the parser
      * @param {Object} ruleObj rule object
     ###
-    setRule: (ruleObj)->
+    setRule: (ruleObj) ->
         _.extend rule, ruleObj
     ###*
      * Hmm..., I'd like to use this to generate document.
      * @return {Object} rule object
     ###
-    getRule: ()->
-        rule
+    getRule: -> rule

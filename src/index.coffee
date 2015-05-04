@@ -5,17 +5,17 @@ path = require 'path'
 
 defaultTemplate = '' + fs.readFileSync path.join __dirname, 'template/markdown.tpl'
 
-removeTag = (comment, tagName)->
-    comment.tags = comment.tags.filter (tag)->
+removeTag = (comment, tagName) ->
+    comment.tags = comment.tags.filter (tag) ->
         tag.tagName isnt tagName
     comment
 
-getTag = (comment, tagName)->
-    tag = comment.tags.filter (tag)->
+getTag = (comment, tagName) ->
+    tag = comment.tags.filter (tag) ->
         tag.tagName is tagName
     tag
 
-hasTag = (comment, tagName)->
+hasTag = (comment, tagName) ->
     getTag(comment, tagName).length
 
 ###*
@@ -24,25 +24,28 @@ hasTag = (comment, tagName)->
  * @return {Array}          filtered array
  * @private
 ###
-commentFilter = (comments)->
-    cos = comments.filter (comment)->
+commentFilter = (comments) ->
+    cos = comments.filter (comment) ->
         not (hasTag comment, 'private' or hasTag comment, 'nodoc')
-    cos.forEach (comment)->
+    cos.forEach (comment) ->
+        if hasTag comment, 'noPrefix'
+            comment.name = comment.name.split('.').slice -1
+            removeTag comment, 'noPrefix'
+
         aliasTag = getTag(comment, 'alias')
         if aliasTag.length
-            alias = aliasTag.reduce (str, a)->
+            alias = aliasTag.reduce (str, a) ->
                 str += a.description + ' '
             , ''
             if alias then comment.name += " (alias: #{alias}) "
-            removeTag(comment, 'alias')
+            removeTag comment, 'alias'
 
         prefixTag = getTag(comment, 'prefix')[0]
         if prefixTag
             comment.name =  (prefixTag.description or '') + comment.name
-            removeTag(comment, 'prefix')
+            removeTag comment, 'prefix'
 
     cos
-
 
 ###*
  * Generate formatted markdown API document from source code
@@ -68,7 +71,7 @@ commentFilter = (comments)->
  * });
  * ```
 ###
-generate = (srcPath, opts = {})->
+generate = (srcPath, opts = {}) ->
     _.defaults opts,
         moduleName: undefined
         moduleDesc: ''
@@ -76,7 +79,7 @@ generate = (srcPath, opts = {})->
         template: defaultTemplate
 
     parser.parseFile srcPath, opts
-    .then (comments)->
+    .then (comments) ->
         moduleName = do ->
             if typeof opts.moduleName isnt 'undefined'  then return opts.moduleName
 
