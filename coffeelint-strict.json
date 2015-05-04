@@ -1,6 +1,11 @@
 {
     "arrow_spacing": {
-        "level": "ignore"
+        "level": "error"
+    },
+    "braces_spacing": {
+        "level": "error",
+        "spaces": 0,
+        "empty_object_spaces": 0
     },
     "camel_case_classes": {
         "level": "error"
@@ -23,7 +28,7 @@
         "level": "error"
     },
     "empty_constructor_needs_parens": {
-        "level": "ignore"
+        "level": "error"
     },
     "ensure_comprehensions": {
         "level": "warn"
@@ -42,11 +47,12 @@
         "limitComments": false
     },
     "missing_fat_arrows": {
-        "level": "ignore"
+        "level": "warn",
+        "is_strict": false
     },
     "newlines_after_classes": {
-        "value": 3,
-        "level": "ignore"
+        "value": 2,
+        "level": "warn"
     },
     "no_backticks": {
         "level": "error"
@@ -55,18 +61,18 @@
         "level": "warn"
     },
     "no_empty_functions": {
-        "level": "error"
+        "level": "warn"
     },
     "no_empty_param_list": {
-        "level": "ignore"
+        "level": "error"
     },
     "no_implicit_braces": {
         "level": "ignore",
         "strict": true
     },
     "no_implicit_parens": {
-        "strict": true,
-        "level": "ignore"
+        "level": "ignore",
+        "strict": true
     },
     "no_interpolation_in_single_quotes": {
         "level": "warn"
