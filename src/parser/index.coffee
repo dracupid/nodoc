@@ -73,7 +73,7 @@ _parseFile = (filePath, opts, sync) ->
 ###*
  * Parse source code from file. Use Promise instead of callback
  * @param  {string}      filePath   souce file path
- * @param  {Object=}     opts       options
+ * @param  {Object={}}     opts       options
  * @return {Promise}                resolve parsed comment object **array**
  * @prefix parser.
  * @example

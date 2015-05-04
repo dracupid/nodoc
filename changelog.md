@@ -1,3 +1,8 @@
+v0.2.1
+=============
+- opt: coffee rules
+- opt: default tpl
+
 v0.2.0
 =========
 - opt: use [yaku](https://github.com/ysmood/yaku) to replace `bluebird`.

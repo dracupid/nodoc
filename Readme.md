@@ -68,7 +68,7 @@ More and more tags is going to be supported.
 ## API
 
 
-- #### <a href="./src/index.coffee?source#L74" target="_blank"><b>generate (alias: render ) </b></a>
+- #### <a href="./src/index.coffee?source#L85" target="_blank"><b>generate(srcPath, opts) (alias: render) </b></a>
   Generate formatted markdown API document from source code
 
   - **<u>param</u>**: `srcPath` { _string_ }
@@ -102,7 +102,7 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/index.coffee?source#L104" target="_blank"><b>parser</b></a>
+- #### <a href="./src/index.coffee?source#L115" target="_blank"><b>parser</b></a>
   Parser module, see below for details.
 
 
@@ -110,7 +110,7 @@ More and more tags is going to be supported.
 ## Parser Module
 
 
-- #### <a href="./src/parser/index.coffee?source#L24" target="_blank"><b>parser.setParser</b></a>
+- #### <a href="./src/parser/index.coffee?source#L24" target="_blank"><b>parser.setParser(name, parser)</b></a>
   Create a new parser or override an old ones
 
   - **<u>param</u>**: `name` { _string|Array_ }
@@ -121,7 +121,7 @@ More and more tags is going to be supported.
 
     parser object, see below
 
-- #### <a href="./src/parser/index.coffee?source#L47" target="_blank"><b>parser.parse</b></a>
+- #### <a href="./src/parser/index.coffee?source#L47" target="_blank"><b>parser.parse(source, language, opts)</b></a>
   Parse source code directly.
 
   - **<u>param</u>**: `source` { _string_ }
@@ -148,14 +148,14 @@ More and more tags is going to be supported.
     })
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L86" target="_blank"><b>parser.parseFile</b></a>
+- #### <a href="./src/parser/index.coffee?source#L86" target="_blank"><b>parser.parseFile(filePath, opts = {})</b></a>
   Parse source code from file. Use Promise instead of callback
 
   - **<u>param</u>**: `filePath` { _string_ }
 
     souce file path
 
-  - **<u>param</u>**: `opts` { _Object=_ }
+  - **<u>param</u>**: `opts` { _Object={}_ }
 
     options
 
@@ -178,7 +178,7 @@ More and more tags is going to be supported.
 
     parsed comment object **array**
 
-- #### <a href="./src/parser/index.coffee?source#L109" target="_blank"><b>parser.setRule</b></a>
+- #### <a href="./src/parser/index.coffee?source#L109" target="_blank"><b>parser.setRule(language, rule)</b></a>
   Set parser's rule
 
   - **<u>param</u>**: `language` { _string_ }
@@ -236,7 +236,7 @@ A parser should provide follow APIs:
 ### Parser API
 
 
-- #### <a href="./src/parser/coffee.coffee?source#L52" target="_blank"><b>parse</b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L52" target="_blank"><b>parse(source, localRule)</b></a>
   Parse comment from source code
 
   - **<u>param</u>**: `source` { _string_ }
@@ -251,7 +251,7 @@ A parser should provide follow APIs:
 
     parsed comments object array
 
-- #### <a href="./src/parser/coffee.coffee?source#L72" target="_blank"><b>setRule</b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L72" target="_blank"><b>setRule(ruleObj)</b></a>
   Set the rule of the parser
 
   - **<u>param</u>**: `ruleObj` { _Object_ }
@@ -272,14 +272,14 @@ A parser uses and is supposed to expose the rules it uses to parse the code.
 
 #### Rule for coffee parser
 ```javascript
-{ commentReg: /###\*([\s\S]+?)###\s+([\w\.]+)/g,
+{ commentReg: /###\*([\s\S]+?)###\s+([\w\.@]+)/g,
   splitReg: /^\s+\* ?@/m,
   tagNameReg: /^([\w\.]+)\s*/,
   typeReg: /^\{(.+|}?)\}\s*/,
   nameReg: /^([\w\.]+)\s*/,
-  nameTags: [ 'param', 'property' ],
+  nameTags: [ 'param', 'property', 'option' ],
   descriptionReg: /^([\s\S]*)/,
-  removePrefix: /self\.|this\./ }
+  removePrefix: /self\.|this\.|@/ }
 ```
 
 ### License

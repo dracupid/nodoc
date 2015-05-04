@@ -32,12 +32,23 @@ commentFilter = (comments) ->
             comment.name = comment.name.split('.').slice -1
             removeTag comment, 'noPrefix'
 
+        defStr = ''
+        getTag(comment, 'param').forEach (param) ->
+            [type, defaultVal] = param.type.split '='
+            if defaultVal
+                defStr += "#{param.name} = #{defaultVal}, "
+            else
+                defStr += "#{param.name}, "
+
+        if defStr
+            comment.name += "(#{defStr.slice(0, -2)})"
+
         aliasTag = getTag(comment, 'alias')
         if aliasTag.length
             alias = aliasTag.reduce (str, a) ->
                 str += a.description + ' '
             , ''
-            if alias then comment.name += " (alias: #{alias}) "
+            if alias then comment.name += " (alias: #{alias.trim()}) "
             removeTag comment, 'alias'
 
         prefixTag = getTag(comment, 'prefix')[0]
