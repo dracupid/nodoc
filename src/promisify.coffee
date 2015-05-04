@@ -1,3 +1,4 @@
+Promise = require 'yaku'
 module.exports = (fn, self) ->
     (args...) ->
         if typeof args[args.length - 1] is 'function'

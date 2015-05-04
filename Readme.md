@@ -272,14 +272,14 @@ A parser uses and is supposed to expose the rules it uses to parse the code.
 
 #### Rule for coffee parser
 ```javascript
-{ commentReg: /###\*([\s\S]+?)###\s+([\w\.@]+)/g,
+{ commentReg: /###\*([\s\S]+?)###\s+([\w\.@'"]+)/g,
   splitReg: /^\s+\* ?@/m,
   tagNameReg: /^([\w\.]+)\s*/,
   typeReg: /^\{(.+|}?)\}\s*/,
   nameReg: /^([\w\.]+)\s*/,
   nameTags: [ 'param', 'property', 'option' ],
   descriptionReg: /^([\s\S]*)/,
-  removePrefix: /self\.|this\.|@/ }
+  removePrefix: /self\.|this\.|@|'|"/g }
 ```
 
 ### License

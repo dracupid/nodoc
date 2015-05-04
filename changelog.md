@@ -1,3 +1,8 @@
+v0.2.2
+============
+- fix: a typo in nodejs
+- opt: coffee rules
+
 v0.2.1
 =============
 - opt: coffee rules
