@@ -1,3 +1,7 @@
+v0.2.3
+===========
+- opt: Function with no param can use an empty @param to get better render result.
+
 v0.2.2
 ============
 - fix: a typo in nodejs

@@ -68,7 +68,7 @@ More and more tags is going to be supported.
 ## API
 
 
-- #### <a href="./src/index.coffee?source#L85" target="_blank"><b>generate(srcPath, opts) (alias: render) </b></a>
+- #### <a href="./src/index.coffee?source#L88" target="_blank"><b>generate(srcPath, opts) (alias: render) </b></a>
   Generate formatted markdown API document from source code
 
   - **<u>param</u>**: `srcPath` { _string_ }
@@ -102,7 +102,7 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/index.coffee?source#L115" target="_blank"><b>parser</b></a>
+- #### <a href="./src/index.coffee?source#L118" target="_blank"><b>parser</b></a>
   Parser module, see below for details.
 
 

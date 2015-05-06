@@ -26,7 +26,7 @@ hasTag = (comment, tagName) ->
 ###
 commentFilter = (comments) ->
     cos = comments.filter (comment) ->
-        not (hasTag comment, 'private' or hasTag comment, 'nodoc')
+        not (hasTag(comment, 'private') or hasTag(comment, 'nodoc'))
     cos.forEach (comment) ->
         if hasTag comment, 'noPrefix'
             comment.name = comment.name.split('.').slice -1
@@ -34,6 +34,7 @@ commentFilter = (comments) ->
 
         defStr = ''
         getTag(comment, 'param').forEach (param) ->
+            return defStr += ' ' if not param.type and not param.name
             [type, defaultVal] = param.type.split '='
             if defaultVal
                 defStr += "#{param.name} = #{defaultVal}, "
@@ -42,6 +43,8 @@ commentFilter = (comments) ->
 
         if defStr
             comment.name += "(#{defStr.slice(0, -2)})"
+            if defStr.trim() is ''
+                removeTag comment, 'param'
 
         aliasTag = getTag(comment, 'alias')
         if aliasTag.length
