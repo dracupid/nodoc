@@ -45,6 +45,9 @@ commentFilter = (comments) ->
             comment.name += "(#{defStr.slice(0, -2)})"
             if defStr.trim() is ''
                 removeTag comment, 'param'
+        else
+            if hasTag(comment, 'return')
+                comment.name += '()'
 
         aliasTag = getTag(comment, 'alias')
         if aliasTag.length

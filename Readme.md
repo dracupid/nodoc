@@ -68,7 +68,7 @@ More and more tags is going to be supported.
 ## API
 
 
-- #### <a href="./src/index.coffee?source#L88" target="_blank"><b>generate(srcPath, opts) (alias: render) </b></a>
+- #### <a href="./src/index.coffee?source#L91" target="_blank"><b>generate(srcPath, opts) (alias: render) </b></a>
   Generate formatted markdown API document from source code
 
   - **<u>param</u>**: `srcPath` { _string_ }
@@ -102,7 +102,7 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/index.coffee?source#L118" target="_blank"><b>parser</b></a>
+- #### <a href="./src/index.coffee?source#L121" target="_blank"><b>parser</b></a>
   Parser module, see below for details.
 
 
@@ -171,7 +171,7 @@ More and more tags is going to be supported.
     });
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L94" target="_blank"><b>parser.parseFileSync</b></a>
+- #### <a href="./src/parser/index.coffee?source#L94" target="_blank"><b>parser.parseFileSync()</b></a>
   Synchronous version of parseFile
 
   - **<u>return</u>**: { _Object_ }
@@ -258,7 +258,7 @@ A parser should provide follow APIs:
 
     rule object
 
-- #### <a href="./src/parser/coffee.coffee?source#L78" target="_blank"><b>getRule</b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L78" target="_blank"><b>getRule()</b></a>
   Hmm..., I'd like to use this to generate document.
 
   - **<u>return</u>**: { _Object_ }

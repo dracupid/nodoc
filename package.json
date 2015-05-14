@@ -32,6 +32,6 @@
   "devDependencies": {
     "coffee-script": "*",
     "coffeelint": "*",
-    "nokit": "0.6.2"
+    "nokit": "0.6.6"
   }
 }
