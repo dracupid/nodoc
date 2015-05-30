@@ -1,6 +1,6 @@
 {
   "name": "nodoc",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "dist/index.js",
   "description": "A simple and 'low-level' source code comments parser and gitHub flavored markdown API documentation generator.",
   "scripts": {
