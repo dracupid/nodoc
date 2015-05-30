@@ -123,7 +123,7 @@ A parser should provide follow APIs:
 ### Rule
 A parser uses and is supposed to expose the rules it uses to parse the code.
 
-#### Rule for coffee parser
+#### Rules for coffee parser
 ```javascript
 <%= coffeeRule %>
 ```
