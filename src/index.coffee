@@ -16,7 +16,7 @@ getTag = (comment, tagName) ->
     tag
 
 hasTag = (comment, tagName) ->
-    getTag(comment, tagName).length
+    not not getTag(comment, tagName).length
 
 ###*
  * Remove tags not to be shown
@@ -36,19 +36,20 @@ commentFilter = (comments) ->
         getTag(comment, 'param').forEach (param) ->
             return defStr += ' ' if not param.type and not param.name
             [type, defaultVal] = param.type.split '='
-            if defaultVal
-                defStr += "#{param.name} = #{defaultVal}, "
-            else
-                defStr += "#{param.name}, "
+
+            defStr +=
+                if defaultVal
+                    "#{param.name} = #{defaultVal}, "
+                else
+                    "#{param.name}, "
 
         if defStr
             comment.sign = "(#{defStr.slice(0, -2)})"
-            if defStr.trim() is ''
-                removeTag comment, 'param'
+            if defStr.trim() is '' then removeTag comment, 'param'
         else if hasTag comment, 'return'
             comment.sign = '()'
 
-        aliasTag = getTag(comment, 'alias')
+        aliasTag = getTag comment, 'alias'
         if aliasTag.length
             alias = aliasTag.reduce (str, a) ->
                 str += a.description + ' '
@@ -66,8 +67,8 @@ commentFilter = (comments) ->
 ###*
  * Generate formatted markdown API document from source code
  * @alias  render
- * @param  {string} srcPath Path of source code file
- * @param  {Object=} opts    Options, optional
+ * @param  {string} srcPath  Path of the source code file
+ * @param  {Object=} opts    Options
  * ```javascript
  * {
  *     moduleName: '', // module name of the file, or it will be auto set to file name, of parent directory name for `index` file.
@@ -79,7 +80,7 @@ commentFilter = (comments) ->
  *     rule: {}             // specific parser rule, items vary from parsers
  * }
  * ```
- * @return {Promise}        Resolve formatted markdown
+ * @return {Promise}        Resolve markdown
  * @example
  * ```javascript
  * nodoc.generate('./src/index.coffee').then(function(md){
@@ -97,12 +98,12 @@ generate = (srcPath, opts = {}) ->
     parser.parseFile srcPath, opts
     .then (comments) ->
         moduleName = do ->
-            if typeof opts.moduleName isnt 'undefined'  then return opts.moduleName
+            if opts.moduleName? then return opts.moduleName
 
             baseName = path.basename srcPath, path.extname(srcPath)
             dirName  = path.dirname(srcPath).split(path.sep).slice(-1)[0]
 
-            return if baseName is 'index' then dirName else baseName
+            if baseName is 'index' then dirName else baseName
 
         _.extend opts.tplData, {
             moduleDesc: opts.moduleDesc
