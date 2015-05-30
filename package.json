@@ -2,7 +2,7 @@
   "name": "nodoc",
   "version": "0.2.4",
   "main": "dist/index.js",
-  "description": "Generate gitHub flavored markdown API doc from source code comments",
+  "description": "A simple and 'low-level' source code comments parser and gitHub flavored markdown API documentation generator.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepubish": "no"
@@ -17,7 +17,10 @@
     "coffee",
     "document",
     "parser",
-    "generator"
+    "generator",
+    "markdown",
+    "GFM",
+    "coffeescript"
   ],
   "files": [
     "dist"
