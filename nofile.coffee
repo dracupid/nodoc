@@ -2,17 +2,13 @@ util = require 'util'
 nodoc = require './src/index.coffee'
 
 kit = require 'nokit'
-drives = kit.require 'drives'
-_ = kit._
+_ = require 'underscore'
+
+$ = require('dracupid-no')(kit)
 
 module.exports = (task) ->
     task 'build', ->
-        kit.warp 'src/**'
-        .load drives.reader isCache: no
-        .load drives.auto 'lint', '.coffee': config: 'coffeelint-strict.json'
-        .load drives.auto 'compile'
-        .run 'dist'
-        .catch -> return
+        $.coffee()
 
     task 'doc', ->
         data = {}
