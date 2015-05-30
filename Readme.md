@@ -102,14 +102,14 @@ As you can see, you can use **markdown** in your comment!
 ## API
 
 
-- #### <a href="./src/index.coffee?source#L90" target="_blank"><b>generate (srcPath, opts)   <small>(alias: render)</small>  </b></a>
+- #### <a href="./src/index.coffee?source#L91" target="_blank"><b>generate (srcPath, opts)  <small>(alias: render)</small>  </b></a>
   Generate formatted markdown API document from source code
 
-  - **<u>param</u>**: `srcPath` { _string_ }<br/>
-    Path of source code file
+  - **param**: `srcPath` { _string_ }<br/>
+    Path of the source code file
 
-  - **<u>param</u>**: `opts` { _Object=_ }<br/>
-    Options, optional
+  - **param**: `opts` { _Object=_ }<br/>
+    Options
     ```javascript
     {
         moduleName: '', // module name of the file, or it will be auto set to file name, of parent directory name for `index` file.
@@ -122,17 +122,17 @@ As you can see, you can use **markdown** in your comment!
     }
     ```
 
-  - **<u>return</u>**:  { _Promise_ }<br/>
-    Resolve formatted markdown
+  - **return**:  { _Promise_ }<br/>
+    Resolve markdown
 
-  - **<u>example</u>**:  <br/>
+  - **example**:  <br/>
     ```javascript
     nodoc.generate('./src/index.coffee').then(function(md){
         console.log(md);
     });
     ```
 
-- #### <a href="./src/index.coffee?source#L120" target="_blank"><b>parser    </b></a>
+- #### <a href="./src/index.coffee?source#L121" target="_blank"><b>parser  </b></a>
   Parser module, see below for details.
 
 
@@ -140,72 +140,72 @@ As you can see, you can use **markdown** in your comment!
 ## Parser Module
 
 
-- #### <a href="./src/parser/index.coffee?source#L24" target="_blank"><b>parser.setParser (name, parser)   </b></a>
+- #### <a href="./src/parser/index.coffee?source#L24" target="_blank"><b>parser.setParser (name, parser) </b></a>
   Create a new parser or override an old ones
 
-  - **<u>param</u>**: `name` { _string|Array_ }<br/>
+  - **param**: `name` { _string|Array_ }<br/>
     parser's name/language (and aliases)
 
-  - **<u>param</u>**: `parser` { _Object_ }<br/>
+  - **param**: `parser` { _Object_ }<br/>
     parser object, see below
 
-- #### <a href="./src/parser/index.coffee?source#L47" target="_blank"><b>parser.parse (source, language, opts)   </b></a>
+- #### <a href="./src/parser/index.coffee?source#L47" target="_blank"><b>parser.parse (source, language, opts) </b></a>
   Parse source code directly.
 
-  - **<u>param</u>**: `source` { _string_ }<br/>
+  - **param**: `source` { _string_ }<br/>
     source code
 
-  - **<u>param</u>**: `language` { _string_ }<br/>
+  - **param**: `language` { _string_ }<br/>
     specify source language
 
-  - **<u>param</u>**: `opts` { _Object=_ }<br/>
+  - **param**: `opts` { _Object=_ }<br/>
     option, optional
 
-  - **<u>return</u>**:  { _Array_ }<br/>
+  - **return**:  { _Array_ }<br/>
     parsed comments object **array**
 
-  - **<u>example</u>**:  <br/>
+  - **example**:  <br/>
     ```javascript
     nodoc.parser.parse("This is source code with comments", "coffee").then(function(comments){
         console.log(comments);
     })
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L86" target="_blank"><b>parser.parseFile (filePath, opts = {})   </b></a>
+- #### <a href="./src/parser/index.coffee?source#L86" target="_blank"><b>parser.parseFile (filePath, opts = {}) </b></a>
   Parse source code from file. Use Promise instead of callback
 
-  - **<u>param</u>**: `filePath` { _string_ }<br/>
+  - **param**: `filePath` { _string_ }<br/>
     souce file path
 
-  - **<u>param</u>**: `opts` { _Object={}_ }<br/>
+  - **param**: `opts` { _Object={}_ }<br/>
     options
 
-  - **<u>return</u>**:  { _Promise_ }<br/>
+  - **return**:  { _Promise_ }<br/>
     resolve parsed comment object **array**
 
-  - **<u>example</u>**:  <br/>
+  - **example**:  <br/>
     ```javascript
     nodoc.parser.parseFile("index.coffee", {cwd: './src'}).then(function(comments){
         console.log(comments);
     });
     ```
 
-- #### <a href="./src/parser/index.coffee?source#L94" target="_blank"><b>parser.parseFileSync ()   </b></a>
+- #### <a href="./src/parser/index.coffee?source#L94" target="_blank"><b>parser.parseFileSync () </b></a>
   Synchronous version of parseFile
 
-  - **<u>return</u>**:  { _Object_ }<br/>
+  - **return**:  { _Object_ }<br/>
     parsed comment object **array**
 
-- #### <a href="./src/parser/index.coffee?source#L109" target="_blank"><b>parser.setRule (language, rule)   </b></a>
+- #### <a href="./src/parser/index.coffee?source#L109" target="_blank"><b>parser.setRule (language, rule) </b></a>
   Set parser's rule
 
-  - **<u>param</u>**: `language` { _string_ }<br/>
+  - **param**: `language` { _string_ }<br/>
     parser's name/language
 
-  - **<u>param</u>**: `rule` { _Object_ }<br/>
+  - **param**: `rule` { _Object_ }<br/>
     parser's rule object
 
-  - **<u>example</u>**:  <br/>
+  - **example**:  <br/>
     ```javascript
     nodoc.parser.setRule('coffee', {
         commentReg: /#?([\s\S]+?)#\s+([\w\.]+)/g
@@ -234,28 +234,28 @@ A parser should provide follow APIs:
 ### Parser API
 
 
-- #### <a href="./src/parser/coffee.coffee?source#L52" target="_blank"><b>parse (source, localRule)   </b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L52" target="_blank"><b>parse (source, localRule) </b></a>
   Parse comment from source code
 
-  - **<u>param</u>**: `source` { _string_ }<br/>
+  - **param**: `source` { _string_ }<br/>
     source code
 
-  - **<u>param</u>**: `localRule` { _Object=_ }<br/>
+  - **param**: `localRule` { _Object=_ }<br/>
     optional, custom rule object, use once
 
-  - **<u>return</u>**:  { _Array_ }<br/>
+  - **return**:  { _Array_ }<br/>
     parsed comments object array
 
-- #### <a href="./src/parser/coffee.coffee?source#L72" target="_blank"><b>setRule (ruleObj)   </b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L72" target="_blank"><b>setRule (ruleObj) </b></a>
   Set the rule of the parser
 
-  - **<u>param</u>**: `ruleObj` { _Object_ }<br/>
+  - **param**: `ruleObj` { _Object_ }<br/>
     rule object
 
-- #### <a href="./src/parser/coffee.coffee?source#L78" target="_blank"><b>getRule ()   </b></a>
+- #### <a href="./src/parser/coffee.coffee?source#L78" target="_blank"><b>getRule () </b></a>
   Hmm..., I'd like to use this to generate document.
 
-  - **<u>return</u>**:  { _Object_ }<br/>
+  - **return**:  { _Object_ }<br/>
     rule object
 
 
