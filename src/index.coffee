@@ -42,19 +42,18 @@ commentFilter = (comments) ->
                 defStr += "#{param.name}, "
 
         if defStr
-            comment.name += "(#{defStr.slice(0, -2)})"
+            comment.sign = "(#{defStr.slice(0, -2)})"
             if defStr.trim() is ''
                 removeTag comment, 'param'
-        else
-            if hasTag(comment, 'return')
-                comment.name += '()'
+        else if hasTag comment, 'return'
+            comment.sign = '()'
 
         aliasTag = getTag(comment, 'alias')
         if aliasTag.length
             alias = aliasTag.reduce (str, a) ->
                 str += a.description + ' '
             , ''
-            if alias then comment.name += " (alias: #{alias.trim()}) "
+            comment.alias = alias.trim() if alias
             removeTag comment, 'alias'
 
         prefixTag = getTag(comment, 'prefix')[0]
