@@ -1,3 +1,8 @@
+v0.3.0
+=========
+- opt: default template
+- update document
+
 v0.2.4
 ==========
 - opt: @return means a function
