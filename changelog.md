@@ -1,3 +1,7 @@
+v0.3.1
+========
+- revert an ugly style hack
+
 v0.3.0
 =========
 - opt: default template
