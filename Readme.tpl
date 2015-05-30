@@ -10,7 +10,7 @@ A simple and 'low-level' source code comments parser and documentation generator
 
 > Other languagage, especially javascript, will be supported soon.
 
-#### Language Name Alias
+#### Language Name Aliases
 Use lower case, used both for language option and extname recognization.
 ```javascript
 <%= alias %>

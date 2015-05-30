@@ -89,7 +89,7 @@ parseFile = (filePath, opts = {}) ->
 ###*
  * Synchronous version of parseFile
  * @prefix parser.
- * @return {Object} parsed comment object **array**
+ * @return {Array} parsed comment object **array**
 ###
 parseFileSync = (filePath, opts = {}) ->
     _parseFile filePath, opts, true
