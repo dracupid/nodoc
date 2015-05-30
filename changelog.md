@@ -1,3 +1,7 @@
+v0.3.2
+======
+- fix a build issue
+
 v0.3.1
 ========
 - revert an ugly style hack

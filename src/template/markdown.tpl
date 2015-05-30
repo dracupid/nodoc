@@ -20,7 +20,7 @@
     <%= item.description.replace(/\n/g, '\n  ') %>
 
   <% item.tags.forEach(function(tag){ %>
-  - **<%= tag.tagName %>**: <%= maybe(tag.name, '`%s`') %> <%= maybe(tag.type, '{ _%s_ }') %><br/>
+  - **<%= tag.tagName %>**: <%= maybe(tag.name, '`%s`') %> <%= maybe(tag.type, '{ _%s_ }') %>
 
     <%= tag.description.replace(/\t/g, '    ').replace(/\n/g, '\n    ') %>
   <% }) %>
