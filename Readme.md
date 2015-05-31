@@ -25,6 +25,7 @@ Use lower case, used both for language option and extname recognization.
 ## Usage
 0. Convert comment block to an object as following:
 #### Parsed Comment Object
+
     ```javascript
     {
         name: 'parseFile',
