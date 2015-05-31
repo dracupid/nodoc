@@ -29,7 +29,7 @@ commentFilter = (comments) ->
         not (hasTag(comment, 'private') or hasTag(comment, 'nodoc'))
     cos.forEach (comment) ->
         if hasTag comment, 'noPrefix'
-            comment.name = comment.name.split('.').slice -1
+            comment.name = comment.name.split('.').slice(-1)[0]
             removeTag comment, 'noPrefix'
 
         defStr = ''
