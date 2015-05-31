@@ -1,3 +1,7 @@
+v0.3.3
+======
+- bug fix
+
 v0.3.2
 ======
 - fix a build issue
