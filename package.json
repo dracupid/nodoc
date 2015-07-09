@@ -33,12 +33,12 @@
   "homepage": "https://github.com/dracupid/nodoc",
   "dependencies": {
     "underscore": "^1.8.3",
-    "yaku": "^0.1.9"
+    "yaku": "^0.2.8"
   },
   "devDependencies": {
     "coffee-script": "*",
     "coffeelint": "*",
     "dracupid-no": "git+https://github.com/dracupid/dracupid-no.git",
-    "nokit": "0.7.7"
+    "nokit": "0.9.0"
   }
 }
