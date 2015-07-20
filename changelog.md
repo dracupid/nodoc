@@ -1,3 +1,7 @@
+v0.3.4
+======
+- update yaku
+
 v0.3.3
 ======
 - bug fix
